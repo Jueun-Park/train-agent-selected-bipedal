@@ -15,3 +15,6 @@ mode_dict = {
     3: "pit",
 }
 ```
+
+## Credits
+[mjyoo2](https://github.com/mjyoo2) found hyperparameters
