@@ -22,11 +22,17 @@ args = parser.parse_args()
 base_index = args.base_index
 
 algo = "ACKTR"
-log_dir = f"{str(algo)}/{mode_dict[base_index]}"
+if base_index not in mode_dict.keys():
+    log_dir = f"{str(algo)}/bipedal-hardcore"
+else:
+    log_dir = f"{str(algo)}/{mode_dict[base_index]}"
 Path(log_dir).mkdir(parents=True, exist_ok=True)
 
 if __name__ == "__main__":
-    env_id = f"selected-bipedal-{mode_dict[base_index]}-v0"
+    if base_index not in mode_dict.keys():
+        env_id = "BipedalWalkerHardcore-v3"
+    else:
+        env_id = f"selected-bipedal-{mode_dict[base_index]}-v0"
     env = SubprocVecEnv([make_env(env_id, i) for i in range(num_cpu)])
     env = VecMonitor(env, filename=log_dir)
 
