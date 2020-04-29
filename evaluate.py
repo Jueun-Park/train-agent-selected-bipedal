@@ -6,10 +6,10 @@ import gym_selected_bipedal
 
 from info import mode_dict
 
-
-index = 2
+# 0 88: 239 64
+index = 0
 subenv_name = mode_dict[index]
-suffix = 271
+suffix = 44
 model_path = f"ACKTR/{subenv_name}/model_{suffix}"
 # model_path = "ACKTR/grass.zip"
 env = gym.make(f"selected-bipedal-{subenv_name}-v0")
