@@ -1,5 +1,5 @@
 # Train Agents on Selected Bipedal Environment
-Training example codes for [gym-selected-bipedal](https://github.com/Jueun-Park/gym-selected-bipedal)
+Training example codes for [gym-selected-bipedal](https://github.com/Jueun-Park/gym-selected-bipedal) using [stable-baselines](https://github.com/hill-a/stable-baselines)
 
 ## Usage
 ```bash
