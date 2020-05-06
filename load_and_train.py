@@ -34,13 +34,14 @@ if __name__ == "__main__":
     else:
         env_id = f"selected-bipedal-{mode_dict[base_index]}-v0"
     env = SubprocVecEnv([make_env(env_id, i) for i in range(num_cpu)])
-    env = VecMonitor(env, filename=log_dir)
+    # env = VecMonitor(env, filename=log_dir)
 
     # callback = SaveOnBestTrainingRewardCallback(
         # check_freq=1000, log_dir=log_dir)
 
-    model = ACKTR.load("ACKTR/bipedal-hardcore/model_207.zip")
+    model = ACKTR.load("ACKTR/bipedal-hardcore/model_228.zip")  # 207, 228
     model.set_env(env)
+    model.learning_rate = 0.01  # 0.125, 0.01
     model.tensorboard_log = "tensorboard_load_ACKTR"
 
     model.learn(

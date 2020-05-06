@@ -23,13 +23,13 @@ base_index = args.base_index
 
 algo = "ACKTR"
 if base_index not in mode_dict.keys():
-    log_dir = f"{str(algo)}/bipedal-hardcore"
+    log_dir = f"{str(algo)}/bipedal-hardcore-save-lr"
 else:
     log_dir = f"{str(algo)}/{mode_dict[base_index]}"
 Path(log_dir).mkdir(parents=True, exist_ok=True)
 
 if __name__ == "__main__":
-    if base_index not in mode_dict.keys():
+    if base_index not in list(range(4)):
         env_id = "BipedalWalkerHardcore-v3"
     else:
         env_id = f"selected-bipedal-{mode_dict[base_index]}-v0"
@@ -43,11 +43,12 @@ if __name__ == "__main__":
         MlpPolicy,
         env,
         verbose=1,
-        tensorboard_log=f"./tensorboard_{algo}/",
+        tensorboard_log=f"./tensorboard_{algo}_save_lr/",
         policy_kwargs={
             'layers': [64, 256, 256, 64],
             'act_fun': tf.nn.relu
-            }
+            },
+        lr_schedule="double_linear_con",
         )
 
     model.learn(
